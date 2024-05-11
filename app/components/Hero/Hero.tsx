@@ -20,7 +20,7 @@ const Hero = () => {
                         <h1 className={` mb-4 text-5xl font-bold tracking-tight leading-none text-gray-900 md:text-7xl lg:text-8xl dark:text-white `}>
                             <Typewriter
                                 options={{
-                                    strings: ["hey, I'm  nazif 👋"],
+                                    strings: ["hey, I'm  nazif!"],
                                     autoStart: true,
                                     deleteSpeed: 1000000000,
                                     loop: false,
