@@ -1,8 +1,8 @@
 import React from 'react';
 import SvgIcon from "@/app/components/TimeLine/SVGIcon";
 import TimelineItem from "@/app/components/TimeLine/TimelineItem";
-
 import companyLogos from "./companyUrls"
+import exp_list from './experience_list';
 const Timeline = ({cname}:{cname:string}) => {
     return (<div className={`px-4 sm:px-8 md:px-20 pt-6`}>
 
@@ -14,7 +14,7 @@ const Timeline = ({cname}:{cname:string}) => {
 
                 <ol className="relative text-left border-s border-blue-600 dark:border-white mx-auto pt-5">
 
-                    <TimelineItem icon={companyLogos["Broadridge"]} title={"Product Management Intern"}
+                    {/* <TimelineItem icon={companyLogos["Broadridge"]} title={"Product Management Intern"}
                                   date={"September 2023 – April 2024"} company={" Broadridge"}/>
 
                     <TimelineItem icon={companyLogos["Algorithmics"]} title={"Coding Instructor"}
@@ -36,7 +36,17 @@ const Timeline = ({cname}:{cname:string}) => {
 
                     <TimelineItem icon={companyLogos["Pathao"]} title={"Data Engineer Intern"}
                                   date={"May 2023 – August 2023"}
-                                  company={"Pathao Limited"}/>
+                                  company={"Pathao Limited"}/> */}
+{
+                                  exp_list.map((item,index)=>{
+                                    return (<TimelineItem  key={index} icon={companyLogos[item.company]} title={item.title}
+                                    date={item.date}
+                                    company={item.company}/>)
+                                  })}
+
+                
+
+                
 
 
                 </ol>
