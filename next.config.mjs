@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images: {
-        domains: ['assets5.lottiefiles.com', 'images.unsplash.com'],
+        domains: ['assets5.lottiefiles.com', 'images.unsplash.com','raw.githubusercontent.com'],
     }
 };
 
