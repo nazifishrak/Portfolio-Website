@@ -3,6 +3,12 @@ import { Navbar } from "./components/Navbar";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/app/components/Footer";
 
+
+
+export const metadata = {
+    title: "Nazif Ishrak 🚀",
+    description: "I built this website for fun. Still thinking what I want to put in here",
+}
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
