@@ -36,7 +36,6 @@ const Gallery = () => {
                         src={"https://images.unsplash.com/photo-1714201603161-cc0dcc424aea?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D"}/>
                     <ImageItem
                         src={"https://images.unsplash.com/photo-1714200408876-92656e8a9179?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8M3x8fGVufDB8fHx8fA%3D%3D"}/>
-                    <ImageItem src={""}/>
                 </div>
             </div>
 

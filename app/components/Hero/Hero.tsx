@@ -17,7 +17,7 @@ const Hero = () => {
                 <section className="ml-2 pl-12">
                     <div className="ml-2 py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
                         {/*${mono.className} --> This was for my old robotic text*/}
-                        <h1 className={` mb-4 text-5xl font-bold tracking-tight leading-none text-gray-900 md:text-7xl lg:text-8xl dark:text-white `}>
+                        <h1 className={` mb-4 text-5xl font-bold tracking-tight leading-none text-gray-800 md:text-7xl lg:text-8xl dark:text-white `}>
                             <Typewriter
                                 options={{
                                     strings: ["hey, I'm  nazif!"],
