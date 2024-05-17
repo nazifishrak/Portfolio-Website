@@ -13,10 +13,16 @@ export default async function ProjectGallery() {
 
     return (
         <div>
-            <h1>My GitHub Repositories</h1>
+
+            <h1 className="text-center mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl lg:text-4xl">From <span
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">Github</span>
+            </h1>
+
+
             <ul>
-                {result.map((repo:any) => (
-                    <ProjectItem imageUrl={repo.imageUrl} title = {repo.name} desc = {repo.description} key={repo.id}/>
+                {result.map((repo: any) => (
+                    <ProjectItem imageUrl={repo.imageUrl} title={repo.name} desc={repo.description}
+                                 language={repo.language}  url={repo.url} key={repo.id}/>
                 ))}
             </ul>
         </div>

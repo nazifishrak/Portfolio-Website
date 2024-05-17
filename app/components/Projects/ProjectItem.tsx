@@ -2,33 +2,32 @@ import React from 'react';
 import Image from "next/image";
 
 // @ts-ignore
-const ProjectItem = ({imageUrl, title, desc}) => {
+const ProjectItem = ({ imageUrl, title, desc, language, url}) => {
     return (
-
-        <div>
-            <div className={`flex flex-col md:flex-row md:space-x-12`}>
-                <div className={`md:w-1/2`}>
-
-                    <Image src={imageUrl}
+        <div className="container mx-auto p-4">
+            <div className="flex flex-col md:flex-row md:space-x-12  p-6 rounded-lg transition-shadow duration-300 ease-in-out">
+                <div className=" mb-4 md:mb-0">
+                    <div className="rounded-xl border-4 border-blue-500 shadow-lg shadow-blue-500">
+                        <Image
+                            src={imageUrl}
                             width={400}
-                           height={400}
-                           className={`rounded-xl shadow-xl hover: opacity-70`}
-
-                           alt={"Image"}/>
-
-                </div>
-
-                <div>
-                    <div className={`md:w-1/2`}>
-                        <h1 className={`text-4xl font-bold mb-6`}>{title}</h1>
-                        <p className={`text-xl leading-7 mb-4 text-neutral-600 dark:text-neutral-400`}>{desc}</p>
-
+                            height={400}
+                            className="rounded-lg"
+                            alt="Project Image"
+                        />
                     </div>
+                </div>
+                <div className="md:w-2/3">
+                    <a href={url}>
+                        <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white">{title}</h1>
+                    </a>
+
+                    <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">{desc}</p>
+                    <span
+                        className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{language}</span>
                 </div>
             </div>
         </div>
-
-
     );
 };
 
