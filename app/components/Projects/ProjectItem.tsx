@@ -3,7 +3,6 @@ import Image from "next/image";
 
 // @ts-ignore
 const ProjectItem = ({imageUrl, title, desc}) => {
-    {console.log(imageUrl)}
     return (
 
         <div>
@@ -11,8 +10,8 @@ const ProjectItem = ({imageUrl, title, desc}) => {
                 <div className={`md:w-1/2`}>
 
                     <Image src={imageUrl}
-                            width={1000}
-                           height={1000}
+                            width={400}
+                           height={400}
                            className={`rounded-xl shadow-xl hover: opacity-70`}
 
                            alt={"Image"}/>
