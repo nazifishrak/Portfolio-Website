@@ -19,7 +19,7 @@ const ProjectItem = ({ imageUrl, title, desc, language, url}) => {
                 </div>
                 <div className="md:w-2/3">
                     <a href={url}>
-                        <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white">{title}</h1>
+                        <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white hover:text-pink-600">{title}</h1>
                     </a>
 
                     <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">{desc}</p>
