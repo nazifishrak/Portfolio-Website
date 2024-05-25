@@ -1,5 +1,5 @@
 "use client"
-import {VT323} from "@next/font/google";
+import {VT323} from "next/font/google";
 import Typewriter from 'typewriter-effect';
 import MyAvatar from "@/app/components/Hero/MyAvatar";
 import Hero from "@/app/components/Hero/Hero";

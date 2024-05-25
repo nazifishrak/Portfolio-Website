@@ -3,7 +3,7 @@
 import React from 'react';
 import Typewriter from "typewriter-effect";
 import MyAvatar from "@/app/components/Hero/MyAvatar";
-import {VT323} from "@next/font/google";
+import {VT323} from "next/font/google";
 import SvgIcon from "@/app/components/TimeLine/SVGIcon";
 
 const mono = VT323({subsets: ["latin"], weight: "400"});
