@@ -1,13 +1,21 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import BlogItem from "@/app/components/Blog/BlogItem";
+
+interface Blog {
+    _id: string;
+    blogTitle: string;
+    blogContent: string;
+    pictureUrl: string;
+}
+
 export default function Blog() {
-    const [blogs, setBlogs] = useState([]);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             const response = await fetch('/api/blog');
-            const data = await response.json();
+            const data: Blog[] = await response.json();
             setBlogs(data);
         };
         fetchBlogs();
