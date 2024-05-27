@@ -7,7 +7,7 @@ import connectToDatabase from "../../lib/mongodb";
 // GET
 
 export async function GET(req,res){
-    await connectToDatabase();
+    const db = await connectToDatabase();
     const blog1 = new Blog({
         blogTitle: "First Blog",
         blogContent: "This is the first blog",
@@ -17,7 +17,7 @@ export async function GET(req,res){
 
 
 
-    const blogs = await Blog.findOne({});
-    console.log("Blogs: ", blogs);
+    const blogs = await Blog.find({});
+    console.log("Blogs: ", blogs, db.connection.name);
     return NextResponse.json(blogs);
 }
