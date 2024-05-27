@@ -1,23 +1,33 @@
-//this is the route file for the blog api using nextjs routes
-import {NextResponse} from "next/server";
-import Blog from "../../models/blogs/blog.models.js";
-import connectToDatabase from "../../lib/mongodb";
+import { NextResponse } from 'next/server';
+import Blog from '../../models/blogs/blog.models';
+import connectToDatabase from '../../lib/mongodb';
 
+export async function GET() {
+    try {
+        await connectToDatabase();
+        const blogs = await Blog.find({});
+        console.log("Blogs: ", blogs);
+        return NextResponse.json(blogs);
+    } catch (error) {
+        console.error('Error fetching blogs:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
 
-// GET
+export async function POST(req) {
+    try {
+        await connectToDatabase();
+        const formData = await req.formData();
+        const blogTitle = formData.get('blogTitle');
+        const blogContent = formData.get('blogContent');
+        const pictureUrl = formData.get('pictureUrl');
 
-export async function GET(req,res){
-    const db = await connectToDatabase();
-    const blog1 = new Blog({
-        blogTitle: "First Blog",
-        blogContent: "This is the first blog",
-        pictureUrl: "https://www.google.com"
-    });
-    await blog1.save();
+        const blog = new Blog({ blogTitle, blogContent, pictureUrl });
+        const newBlog = await blog.save();
 
-
-
-    const blogs = await Blog.find({});
-    console.log("Blogs: ", blogs, db.connection.name);
-    return NextResponse.json(blogs);
+        return NextResponse.json(newBlog);
+    } catch (error) {
+        console.error('Error creating blog:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
 }

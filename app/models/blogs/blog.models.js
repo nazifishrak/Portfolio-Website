@@ -17,7 +17,7 @@ const blogSchema = new mongoose.Schema({
         required: false,
 
     }
-}, {timestamps: true});
+}, {timestamps: true, collection: 'blogs'});
 
 const Blog =  mongoose.models.Blog || mongoose.model("Blog", blogSchema);
 export default Blog;
