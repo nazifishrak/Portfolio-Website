@@ -1,19 +1,34 @@
-import RootLayout from "../layout";
-import React from "react";
-import Timeline from "@/app/components/TimeLine/Timeline";
-const Blog = () => {
+'use client';
+import React, { useEffect, useState } from 'react';
+import BlogItem from "@/app/components/Blog/BlogItem";
+export default function Blog() {
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const response = await fetch('/api/blog');
+            const data = await response.json();
+            setBlogs(data);
+        };
+        fetchBlogs();
+    }, []);
+
     return (
+        <div>
+            <h1 className="text-center mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl lg:text-4xl">
+                From <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">Our Blog</span>
+            </h1>
 
-
-            <div className={'h-screen w-screen p-5'}>
-                <h1
-                className="mb-4 text-center mx-auto my-auto  text-2xl  font-semibold text-gray-500 leading-none tracking-tight  md:text-3xl lg:text-3xl dark:text-white">Coming <span
-                    className="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-blue-300">Soon </span>
-                </h1>
-            </div>
-
-
+            <ul className="space-y-8">
+                {blogs.map((blog) => (
+                    <BlogItem
+                        title={blog.blogTitle}
+                        content={blog.blogContent}
+                        imageUrl={blog.pictureUrl}
+                        key={blog._id}
+                    />
+                ))}
+            </ul>
+        </div>
     );
-};
-
-export default Blog; 
+}
