@@ -55,7 +55,7 @@ const BlogPost = async ({ params }: BlogPostProps) => {
   return (
 
 
-      <div className="container mx-auto p-4  md:p-8  rounded-lg shadow-md">
+      <div className="container mx-auto p-4  md:p-8  rounded-lg ">
 
 
         <h1 className="mb-4 text-6xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
