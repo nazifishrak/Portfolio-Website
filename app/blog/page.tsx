@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import BlogItem from "@/app/components/Blog/BlogItem";
 
 interface Blog {
+
     _id: string;
     blogTitle: string;
     blogContent: string;
     pictureUrl: string;
+    slug: string;
 }
 
 export default function Blog() {

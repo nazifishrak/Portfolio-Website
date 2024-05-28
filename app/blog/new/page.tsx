@@ -11,7 +11,7 @@ const NewBlog = () => {
 
     const correctPassword = 'admin'; // Replace this with your actual password
 
-    const handlePasswordSubmit = (e) => {
+    const handlePasswordSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (password === correctPassword) {
             setIsAuthenticated(true);
@@ -20,7 +20,7 @@ const NewBlog = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         const formData = new FormData();

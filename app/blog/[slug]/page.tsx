@@ -11,12 +11,20 @@ interface BlogPostProps {
   };
 }
 
+interface BlogType {
+  blogTitle: string;
+  blogContent: string;
+  pictureUrl: string;
+  slug: string;
+}
+
 export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
   const { slug } = params;
 
   await connectToDatabase();
 
-  const blog = await Blog.findOne({ slug: slug })
+  // @ts-ignore
+  const blog: BlogType = await Blog.findOne({ slug: slug })
 
   if (!blog) {
     return {
@@ -36,7 +44,8 @@ const BlogPost = async ({ params }: BlogPostProps) => {
 
   await connectToDatabase();
 
-  const blog = await Blog.findOne({ slug }).lean();
+  // @ts-ignore
+  const blog :BlogType = await Blog.findOne({ slug }).lean();
 
   if (!blog) {
     return <div>Blog not found</div>;
