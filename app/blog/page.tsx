@@ -30,10 +30,12 @@ export default function Blog() {
             <ul className="space-y-8">
                 {blogs.map((blog) => (
                     <BlogItem
+                        key={blog._id}
+                        id={blog._id}
                         title={blog.blogTitle}
                         content={blog.blogContent}
                         imageUrl={blog.pictureUrl}
-                        key={blog._id}
+                        slug={blog.slug}
                     />
                 ))}
             </ul>

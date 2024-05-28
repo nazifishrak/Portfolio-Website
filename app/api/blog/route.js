@@ -21,8 +21,10 @@ export async function POST(req) {
         const blogTitle = formData.get('blogTitle');
         const blogContent = formData.get('blogContent');
         const pictureUrl = formData.get('pictureUrl');
+        const slug = formData.get('slug');
 
-        const blog = new Blog({ blogTitle, blogContent, pictureUrl });
+        const blog = new Blog({ blogTitle, blogContent, pictureUrl, slug });
+        console.log('Slug:', slug);
         const newBlog = await blog.save();
 
         return NextResponse.json(newBlog);

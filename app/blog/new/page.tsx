@@ -6,11 +6,12 @@ const NewBlog = () => {
     const [blogContent, setBlogContent] = useState('');
     const [pictureUrl, setPictureUrl] = useState('');
     const [password, setPassword] = useState('');
+    const [slug, setSlug] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const correctPassword = 'admin'; // Replace this with your actual password
 
-    const handlePasswordSubmit = (e: { preventDefault: () => void; }) => {
+    const handlePasswordSubmit = (e) => {
         e.preventDefault();
         if (password === correctPassword) {
             setIsAuthenticated(true);
@@ -19,13 +20,14 @@ const NewBlog = () => {
         }
     };
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append('blogTitle', blogTitle);
         formData.append('blogContent', blogContent);
         formData.append('pictureUrl', pictureUrl);
+        formData.append('slug', slug); // Append slug to form data
 
         const response = await fetch('/api/blog', {
             method: 'POST',
@@ -39,6 +41,7 @@ const NewBlog = () => {
             setBlogTitle('');
             setBlogContent('');
             setPictureUrl('');
+            setSlug('');
         } else {
             console.error('Failed to create new blog');
         }
@@ -98,6 +101,17 @@ const NewBlog = () => {
                                 value={pictureUrl}
                                 onChange={(e) => setPictureUrl(e.target.value)}
                                 className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='slug' className='block mb-2 text-sm font-medium text-gray-900'>Slug</label>
+                            <input
+                                type='text'
+                                id='slug'
+                                value={slug}
+                                onChange={(e) => setSlug(e.target.value)}
+                                className='block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500'
+                                required
                             />
                         </div>
                         <button type="submit" className="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-70">Create Blog</button>
