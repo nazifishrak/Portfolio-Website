@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Markdown from 'markdown-to-jsx';
 
 // @ts-ignore
 const BlogItem = ({ id, title, content, imageUrl, slug }) => {
@@ -9,7 +10,7 @@ const BlogItem = ({ id, title, content, imageUrl, slug }) => {
     };
 
     return (
-        <Link className="container mx-auto p-4 block hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300 ease-in-out rounded-lg" href={`/blog/${slug}`}>
+        <Link className="container mx-auto p-4 block hover:bg-gray-100 dark:hover:bg-gray-900 transition duration-300 ease-in-out rounded-lg" href={`/blog/${slug}`}>
             
                 <div className="flex flex-col md:flex-row md:space-x-12 p-6 rounded-lg transition-shadow duration-300 ease-in-out">
                     {imageUrl && (
@@ -27,9 +28,12 @@ const BlogItem = ({ id, title, content, imageUrl, slug }) => {
                     )}
                     <div className="md:w-2/3">
                         <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white hover:text-pink-600">{title}</h1>
-                        <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">
+                        {/* <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">
+                            <Markdown>
                             {truncateContent(content, 200)}
-                        </p>
+                            </Markdown>
+                            
+                        </p> */}
                     </div>
                 </div>
         </Link>

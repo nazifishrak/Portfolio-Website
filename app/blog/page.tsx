@@ -24,7 +24,7 @@ export default function Blog() {
     return (
         <div>
             <h1 className="text-center mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl lg:text-4xl">
-                From <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">Our Blog</span>
+                From <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">My Notebook</span>
             </h1>
 
             <ul className="space-y-8">
