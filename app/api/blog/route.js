@@ -5,7 +5,7 @@ import connectToDatabase from '../../lib/mongodb';
 export async function GET() {
     try {
         await connectToDatabase();
-        const blogs = await Blog.find({});
+        const blogs = await Blog.find({}).sort({createdAt: -1});
         console.log("Blogs: ", blogs);
         return NextResponse.json(blogs);
     } catch (error) {
