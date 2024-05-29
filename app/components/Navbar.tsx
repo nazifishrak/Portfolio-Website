@@ -16,7 +16,7 @@ const NAV_CONTENTS: Array<NavContent> = [
   { name: "Home", value: "" },
   { name: "Blog", value: "blog" },
   { name: "Projects", value: "projects" },
-  { name: "Contact", value: "contact" },
+  { name: "About Me", value: "about" },
 ];
 
 export const Navbar = () => {
