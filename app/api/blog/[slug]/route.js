@@ -19,3 +19,28 @@ export async function GET(request, { params }) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+
+export async function PUT(request, { params }) {
+    try {
+        // Connect to the database
+        await connectToDatabase();
+
+        const { slug } = params;
+        const updatedData = await request.json();
+
+        const updatedBlog = await Blog.findOneAndUpdate(
+            { slug: slug },
+            updatedData,
+            { new: true }
+        );
+
+        if (!updatedBlog) {
+            return NextResponse.json({ error: 'Blog Not Found' }, { status: 404 });
+        }
+
+        return NextResponse.json(updatedBlog);
+    } catch (error) {
+        console.error('Error updating blog:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
