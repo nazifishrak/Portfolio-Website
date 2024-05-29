@@ -6,7 +6,7 @@ export async function GET() {
     try {
         await connectToDatabase();
         const blogs = await Blog.find({}).sort({createdAt: -1});
-        console.log("Blogs: ", blogs);
+        // console.log("Blogs: ", blogs);
         return NextResponse.json(blogs);
     } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -24,7 +24,7 @@ export async function POST(req) {
         const slug = formData.get('slug');
 
         const blog = new Blog({ blogTitle, blogContent, pictureUrl, slug });
-        console.log('Slug:', slug);
+        // console.log('Slug:', slug);
         const newBlog = await blog.save();
 
         return NextResponse.json(newBlog);

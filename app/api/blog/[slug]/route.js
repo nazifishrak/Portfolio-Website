@@ -10,7 +10,7 @@ export async function GET(request, { params }) {
         const { slug } = params;
 
         const blog = await Blog.findOne({ slug: slug });
-        console.log("Blogs: ", blog);
+        // console.log("Blogs: ", blog);
 
         // Return the blog post as JSON
         return NextResponse.json(blog);

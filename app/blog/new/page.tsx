@@ -11,7 +11,7 @@ const NewBlog = () => {
     const [slug, setSlug] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const correctPassword = 'admin';
+    const correctPassword = process.env.NEXT_PUBLIC_PASSWORD;
 
     const handlePasswordSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
