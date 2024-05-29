@@ -17,7 +17,8 @@ const BlogItem = ({ id, title, content, imageUrl, slug }) => {
                         <div className="mb-4 md:mb-0">
                             <div className="rounded-xl border-4 border-blue-500 shadow-lg shadow-blue-500">
                                 <Image
-                                    src={'https://images.unsplash.com/photo-1714779573259-216b0cf746be?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+                                    // src={'https://images.unsplash.com/photo-1714779573259-216b0cf746be?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+                                    src={imageUrl}
                                     width={400}
                                     height={400}
                                     className="rounded-lg"
@@ -28,12 +29,12 @@ const BlogItem = ({ id, title, content, imageUrl, slug }) => {
                     )}
                     <div className="md:w-2/3">
                         <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white hover:text-pink-600">{title}</h1>
-                        {/* <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">
+                        <p className="max-w-lg text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">
                             <Markdown>
-                            {truncateContent(content, 200)}
+                            {truncateContent(content, 250)}
                             </Markdown>
-                            
-                        </p> */}
+
+                        </p>
                     </div>
                 </div>
         </Link>
