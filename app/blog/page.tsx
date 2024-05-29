@@ -1,9 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import BlogItem from "@/app/components/Blog/BlogItem";
-
+import Loading from "./loading"
 interface Blog {
-
     _id: string;
     blogTitle: string;
     blogContent: string;
@@ -13,15 +12,26 @@ interface Blog {
 
 export default function Blog() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
         const fetchBlogs = async () => {
-            const response = await fetch('/api/blog');
-            const data: Blog[] = await response.json();
-            setBlogs(data);
+            try {
+                const response = await fetch('/api/blog');
+                const data: Blog[] = await response.json();
+                setBlogs(data);
+                setLoading(false); // Set loading to false once data is fetched
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+                setLoading(false); // Set loading to false in case of an error
+            }
         };
         fetchBlogs();
     }, []);
+
+    if (loading) {
+        return <Loading />; // Show loading indicator if loading
+    }
 
     return (
         <div>
