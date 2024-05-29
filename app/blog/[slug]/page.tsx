@@ -1,9 +1,11 @@
+"use client"
 // app/blog/[slug]/page.tsx
 
 import { Metadata } from 'next';
 import Markdown from 'markdown-to-jsx';
 import connectToDatabase from '@/app/lib/mongodb';
 import Blog from '@/app/models/blogs/blog.models';
+import {useEffect, useState} from "react";
 
 interface BlogPostProps {
   params: {
@@ -18,34 +20,22 @@ interface BlogType {
   slug: string;
 }
 
-export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
-  const { slug } = params;
 
-  await connectToDatabase();
-
-  // @ts-ignore
-  const blog: BlogType = await Blog.findOne({ slug: slug })
-
-  if (!blog) {
-    return {
-      title: 'Blog Not Found',
-      description: 'The blog post you are looking for does not exist.',
-    };
-  }
-
-  return {
-    title: blog.blogTitle,
-    description: blog.blogContent.slice(0, 150),
-  };
-}
 
 const BlogPost = async ({ params }: BlogPostProps) => {
   const { slug } = params;
 
-  await connectToDatabase();
+  const [blog, setBlog] = useState<BlogType>();
 
-  // @ts-ignore
-  const blog :BlogType = await Blog.findOne({ slug }).lean();
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const response = await fetch(`/api/blog/${slug}`);
+      const data: BlogType = await response.json();
+      setBlog(data);
+    };
+    fetchBlog();
+  }, [slug])
+
 
   if (!blog) {
     return <div>Blog not found</div>;
