@@ -2,6 +2,7 @@ import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/app/components/Footer";
+import { Analytics } from "@vercel/analytics/react"
 import Head from "next/head";
 
 
@@ -35,6 +36,7 @@ export default function RootLayout({
                     <Navbar/>
 
                     {children}
+                    <Analytics/>
 
                     <Footer/>
 
