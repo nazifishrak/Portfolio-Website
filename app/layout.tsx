@@ -2,12 +2,16 @@ import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/app/components/Footer";
+import Head from "next/head";
 
 
 
 export const metadata = {
     title: "Nazif Ishrak 🚀",
     description: "I built this website for fun. Still thinking what I want to put in here",
+    icons: {
+        icon: '/favicon.ico',
+    },
 }
 export default function RootLayout({
                                        children,
@@ -16,6 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning={true}>
+
         <body>
         <ThemeProvider enableSystem={true} attribute="class">
 
