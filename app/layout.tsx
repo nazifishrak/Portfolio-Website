@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/app/components/Footer";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Head from "next/head";
 
 
@@ -37,6 +38,7 @@ export default function RootLayout({
 
                     {children}
                     <Analytics/>
+                    <SpeedInsights />
 
                     <Footer/>
 
