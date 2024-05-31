@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Markdown from 'markdown-to-jsx';
 import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {materialOceanic, atomDark, dracula} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 interface BlogPostProps {
   params: {
@@ -108,9 +108,10 @@ const BlogPost = ({ params }: BlogPostProps) => {
                 },
                 code: {
                   component: ({ className, children }) => {
-                    const language = className ? className.replace('language-', '') : '';
+                    const language = className ? className.replace('lang-', '') : '';
+                    console.log(language)
                     return (
-                        <SyntaxHighlighter style={tomorrow} language={language}>
+                        <SyntaxHighlighter style={dracula} language={language}>
                           {children}
                         </SyntaxHighlighter>
                     );
