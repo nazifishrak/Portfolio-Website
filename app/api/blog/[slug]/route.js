@@ -44,3 +44,25 @@ export async function PUT(request, { params }) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+
+
+
+
+export async function DELETE(request, { params }) {
+    try {
+        // Connect to the database
+        await connectToDatabase();
+
+        const { slug } = params;
+
+        const updatedBlog = await Blog.findOneAndDelete({ slug });
+        if (!updatedBlog) {
+            return NextResponse.json({ error: 'Blog Not Found' }, { status: 404 });
+        }
+
+        return NextResponse.json(updatedBlog);
+    } catch (error) {
+        console.error('Error deleting blog:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}

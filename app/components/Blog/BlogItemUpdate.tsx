@@ -3,9 +3,11 @@ import React from 'react';
 import Image from 'next/image';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
+import {useRouter} from "next/navigation";
 
 // @ts-ignore
 const BlogItemUpdate = ({ id, title, content, imageUrl, slug }) => {
+    const router = useRouter();
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.substring(0, maxLength) + '...' : content;
     };
@@ -34,6 +36,7 @@ const BlogItemUpdate = ({ id, title, content, imageUrl, slug }) => {
                         <Markdown>
                             {truncateContent(content, 250)}
                         </Markdown>
+                        <br></br>
 
                             <Link href={`/blog/update/${slug}`} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <svg
@@ -53,6 +56,19 @@ const BlogItemUpdate = ({ id, title, content, imageUrl, slug }) => {
                                 </svg>
                                 <span className="sr-only">Icon description</span>
                             </Link>
+
+                        <Link href={``} onClick={async ()=>{fetch(`/api/blog/${slug}`, {method: 'DELETE'}).then((res)=> router.push("/blog/"))}} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path fillRule="evenodd"
+                                      d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
+                                      clipRule="evenodd"/>
+                            </svg>
+
+
+                            <span className="sr-only">Icon description</span>
+                        </Link>
 
                     </p>
                 </div>
