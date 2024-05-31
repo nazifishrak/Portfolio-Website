@@ -1,11 +1,10 @@
-"use client"
-// app/blog/[slug]/page.tsx
+"use client";
 
 import { Metadata } from 'next';
 import Markdown from 'markdown-to-jsx';
-import connectToDatabase from '@/app/lib/mongodb';
-import Blog from '@/app/models/blogs/blog.models';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface BlogPostProps {
   params: {
@@ -20,43 +19,34 @@ interface BlogType {
   slug: string;
 }
 
-
-
-const BlogPost = async ({ params }: BlogPostProps) => {
+const BlogPost = ({ params }: BlogPostProps) => {
   const { slug } = params;
-
-  const [blog, setBlog] = useState<BlogType>();
+  const [blog, setBlog] = useState<BlogType | null>(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
       const response = await fetch(`/api/blog/${slug}`);
-      const data: BlogType = await response.json();
-      setBlog(data);
+      if (response.ok) {
+        const data: BlogType = await response.json();
+        setBlog(data);
+      } else {
+        setBlog(null);
+      }
     };
     fetchBlog();
-  }, [slug])
-
+  }, [slug]);
 
   if (!blog) {
     return <div>Blog not found</div>;
   }
 
-  // @ts-ignore
   return (
-
-
-      <div className="container mx-auto p-4  md:p-8  rounded-lg ">
-
-
+      <div className="container mx-auto p-4 md:p-8 rounded-lg">
         <h1 className="mb-4 text-6xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
-
-          <span
-              className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-pink-400 dark:from-sky-300 dark:to-slate-400">
-    {blog.blogTitle}
-</span>
-
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-pink-400 dark:from-sky-300 dark:to-slate-400">
+          {blog.blogTitle}
+        </span>
         </h1>
-
 
         <Markdown
             className="prose prose-lg dark:prose-dark max-w-3xl text-gray-700 dark:text-gray-300 mx-auto"
@@ -65,65 +55,73 @@ const BlogPost = async ({ params }: BlogPostProps) => {
                 h1: {
                   component: 'h1',
                   props: {
-                    className: 'text-4xl font-bold text-gray-800 dark:text-white mb-4'
-                  }
+                    className: 'text-4xl font-bold text-gray-800 dark:text-white mb-4',
+                  },
                 },
                 h2: {
                   component: 'h2',
                   props: {
-                    className: 'text-3xl font-semibold text-gray-800 dark:text-white mb-3'
-                  }
+                    className: 'text-3xl font-semibold text-gray-800 dark:text-white mb-3',
+                  },
                 },
                 h3: {
                   component: 'h3',
                   props: {
-                    className: 'text-2xl font-medium text-gray-800 dark:text-white mb-2'
-                  }
+                    className: 'text-2xl font-medium text-gray-800 dark:text-white mb-2',
+                  },
                 },
                 p: {
                   component: 'p',
                   props: {
-                    className: 'text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6'
-                  }
+                    className: 'text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6',
+                  },
                 },
                 img: {
                   component: 'img',
                   props: {
-                    className: 'custom-img mx-auto rounded-lg object-cover shadow-lg mb-6'
-                  }
+                    className: 'custom-img mx-auto rounded-lg object-cover shadow-lg mb-6',
+                  },
                 },
                 a: {
                   component: 'a',
                   props: {
-                    className: 'text-blue-600 dark:text-blue-400 hover:underline'
-                  }
+                    className: 'text-blue-600 dark:text-blue-400 hover:underline',
+                  },
                 },
                 ul: {
                   component: 'ul',
                   props: {
-                    className: 'list-disc list-inside mb-6'
-                  }
+                    className: 'list-disc list-inside mb-6',
+                  },
                 },
                 ol: {
                   component: 'ol',
                   props: {
-                    className: 'list-decimal list-inside mb-6'
-                  }
+                    className: 'list-decimal list-inside mb-6',
+                  },
                 },
                 li: {
                   component: 'li',
                   props: {
-                    className: 'mb-2'
-                  }
-                }
-              }
+                    className: 'mb-2',
+                  },
+                },
+                code: {
+                  component: ({ className, children }) => {
+                    const language = className ? className.replace('language-', '') : '';
+                    return (
+                        <SyntaxHighlighter style={tomorrow} language={language}>
+                          {children}
+                        </SyntaxHighlighter>
+                    );
+                  },
+                },
+              },
             }}
         >
           {blog.blogContent}
         </Markdown>
       </div>
-
-
   );
 };
 
