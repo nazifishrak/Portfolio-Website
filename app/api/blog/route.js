@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import Blog from '../../models/blogs/blog.models';
 import connectToDatabase from '../../lib/mongodb';
+import addFieldToAllDocuments from "../../lib/schemaUpdator";
 
 export async function GET() {
     try {
@@ -22,8 +23,9 @@ export async function POST(req) {
         const blogContent = formData.get('blogContent');
         const pictureUrl = formData.get('pictureUrl');
         const slug = formData.get('slug');
+        const blogCategory = formData.get('blogCategory');
 
-        const blog = new Blog({ blogTitle, blogContent, pictureUrl, slug });
+        const blog = new Blog({ blogTitle, blogContent, pictureUrl, slug, blogCategory });
         // console.log('Slug:', slug);
         const newBlog = await blog.save();
 

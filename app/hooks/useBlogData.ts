@@ -6,6 +6,7 @@ const useBlogData = (slug: string | string[]) => {
     const [blogContent, setBlogContent] = useState('');
     const [pictureUrl, setPictureUrl] = useState('');
     const [blogSlug, setBlogSlug] = useState('');
+    const [blogCategory, setBlogCategory] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,6 +18,7 @@ const useBlogData = (slug: string | string[]) => {
                 setBlogContent(data.blogContent);
                 setPictureUrl(data.pictureUrl);
                 setBlogSlug(data.slug);
+                setBlogCategory(data.blogCategory);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -35,6 +37,7 @@ const useBlogData = (slug: string | string[]) => {
             blogContent,
             pictureUrl,
             slug: blogSlug,
+            blogCategory,
         };
 
         try {
@@ -56,7 +59,7 @@ const useBlogData = (slug: string | string[]) => {
         }
     };
 
-    return { blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl, setPictureUrl, blogSlug, setBlogSlug, loading, handleSubmit };
+    return { blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl, setPictureUrl, blogSlug, setBlogSlug, blogCategory, setBlogCategory,  loading, handleSubmit };
 };
 
 export default useBlogData;

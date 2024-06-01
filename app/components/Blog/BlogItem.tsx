@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Markdown from 'markdown-to-jsx';
 
 // @ts-ignore
-const BlogItem = ({ id, title, content, imageUrl, slug }) => {
+const BlogItem = ({title, content, imageUrl, slug, category }) => {
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.substring(0, maxLength) + '...' : content;
     };
@@ -31,10 +31,14 @@ const BlogItem = ({ id, title, content, imageUrl, slug }) => {
                         <h1 className="text-3xl font-bold text-gray-600 mb-4 dark:text-white hover:text-pink-600">{title}</h1>
                         <p className="max-w-lg text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">
                             <Markdown>
-                            {truncateContent(content, 250)}
+                                {truncateContent(content, 250)}
                             </Markdown>
 
                         </p>
+                        <br/>
+                        <span
+                            className="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">{category}
+                        </span>
                     </div>
                 </div>
         </Link>

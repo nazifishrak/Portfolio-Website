@@ -2,23 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import BlogItem from "@/app/components/Blog/BlogItem";
 import Loading from "./loading"
-interface Blog {
-    _id: string;
-    blogTitle: string;
-    blogContent: string;
-    pictureUrl: string;
-    slug: string;
-}
+import BlogType from "@/app/lib/constants";
 
 export default function Blog() {
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [blogs, setBlogs] = useState<BlogType[]>([]);
     const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
                 const response = await fetch('/api/blog');
-                const data: Blog[] = await response.json();
+                const data: BlogType[] = await response.json();
                 setBlogs(data);
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
@@ -42,12 +36,12 @@ export default function Blog() {
             <ul className="space-y-8">
                 {blogs.map((blog) => (
                     <BlogItem
-                        key={blog._id}
-                        id={blog._id}
+                        key={blog.slug}
                         title={blog.blogTitle}
                         content={blog.blogContent}
                         imageUrl={blog.pictureUrl}
                         slug={blog.slug}
+                        category={blog.blogCategory}
                     />
                 ))}
             </ul>

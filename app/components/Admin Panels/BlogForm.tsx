@@ -2,7 +2,7 @@
 import React from 'react';
 
 // @ts-ignore
-const BlogForm = ({blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl,setPictureUrl,slug, setSlug, handleSubmit}) => {
+const BlogForm = ({blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl,setPictureUrl,slug, setSlug, blogCategory, setBlogCategory, handleSubmit}) => {
     return (
         <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
             <h1 className="mb-4 text-4xl font-extrabold text-center text-gray-900">Create New Blog</h1>
@@ -49,6 +49,18 @@ const BlogForm = ({blogTitle, setBlogTitle, blogContent, setBlogContent, picture
                         id='slug'
                         value={slug}
                         onChange={(e) => setSlug(e.target.value)}
+                        className='block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500'
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor='blogCategory' className='block mb-2 text-sm font-medium text-gray-900'>Category</label>
+                    <input
+                        type='text'
+                        id='blogCategory'
+                        value={blogCategory}
+                        onChange={(e) => setBlogCategory(e.target.value)}
                         className='block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500'
                         required
                     />

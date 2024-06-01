@@ -5,6 +5,8 @@ import Markdown from 'markdown-to-jsx';
 import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {materialOceanic, atomDark, dracula} from "react-syntax-highlighter/dist/cjs/styles/prism";
+import BlogType from "@/app/lib/constants";
+
 
 interface BlogPostProps {
   params: {
@@ -12,12 +14,7 @@ interface BlogPostProps {
   };
 }
 
-interface BlogType {
-  blogTitle: string;
-  blogContent: string;
-  pictureUrl: string;
-  slug: string;
-}
+
 
 const BlogPost = ({ params }: BlogPostProps) => {
   const { slug } = params;

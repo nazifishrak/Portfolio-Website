@@ -13,7 +13,7 @@ const UpdateBlog = () => {
 
     // @ts-ignore
     const { password, setPassword, isAuthenticated, handlePasswordSubmit } = useAuthentication(process.env.NEXT_PUBLIC_PASSWORD);
-    const { blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl, setPictureUrl, blogSlug, setBlogSlug, loading, handleSubmit } = useBlogData(slug);
+    const { blogTitle, setBlogTitle, blogContent, setBlogContent, pictureUrl, setPictureUrl, blogSlug, setBlogSlug, blogCategory, setBlogCategory, loading, handleSubmit } = useBlogData(slug);
 
     if (loading) {
         return <Loading />
@@ -39,6 +39,8 @@ const UpdateBlog = () => {
                         setPictureUrl={setPictureUrl}
                         blogSlug={blogSlug}
                         setBlogSlug={setBlogSlug}
+                        blogCategory={blogCategory}
+                        setBlogCategory={setBlogCategory}
                         handleSubmit={handleSubmit}
                     />
                 )

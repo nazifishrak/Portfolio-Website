@@ -22,6 +22,10 @@ const blogSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    blogCategory: {
+        type: String,
+        required: true,
+    },
 }, {timestamps: true, collection: 'blogs'});
 
 const Blog =  mongoose.models.Blog || mongoose.model("Blog", blogSchema);

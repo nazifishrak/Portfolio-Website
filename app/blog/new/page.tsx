@@ -9,6 +9,7 @@ const NewBlog = () => {
     const [pictureUrl, setPictureUrl] = useState('');
     const [password, setPassword] = useState('');
     const [slug, setSlug] = useState('');
+    const [blogCategory, setBlogCategory] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const correctPassword = process.env.NEXT_PUBLIC_PASSWORD;
@@ -30,6 +31,7 @@ const NewBlog = () => {
         formData.append('blogContent', blogContent);
         formData.append('pictureUrl', pictureUrl);
         formData.append('slug', slug);
+        formData.append('blogCategory', blogCategory)
 
         const response = await fetch('/api/blog', {
             method: 'POST',
@@ -44,6 +46,7 @@ const NewBlog = () => {
             setBlogContent('');
             setPictureUrl('');
             setSlug('');
+            setBlogCategory('');
         } else {
             console.error('Failed to create new blog');
         }
@@ -67,7 +70,10 @@ const NewBlog = () => {
                     setPictureUrl={setPictureUrl}
                     slug={slug}
                     setSlug={setSlug}
+                    blogCategory={blogCategory}
+                    setBlogCategory={setBlogCategory}
                     handleSubmit={handleSubmit}
+
                 />
             )}
         </div>
