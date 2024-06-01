@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Preview
-## [Live Demo ǂ](https://portfolio-website-woad-eta.vercel.app/)
+## [Live Demo ǂ](https:nazif-ishrak.me/)
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 
