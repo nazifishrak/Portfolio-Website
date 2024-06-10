@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const About = () => {
     return (
-        <div className="flex flex-col items-center min-h-screen py-10 ">
+        <div className="px-10 flex flex-col items-center min-h-screen py-10 ">
             <h1 className="text-center mb-8 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                 <mark className="px-2 text-white bg-pink-500 rounded dark:bg-pink-500">Know</mark>
                 Me

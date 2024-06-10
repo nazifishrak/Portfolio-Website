@@ -8,8 +8,8 @@ const ProjectItem = ({ imageUrl, title, desc, language, url, date}) => {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
+        // hour: 'numeric',
+        // minute: 'numeric',
         hour12: true
     };
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
