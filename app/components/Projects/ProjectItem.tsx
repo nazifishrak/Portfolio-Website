@@ -2,7 +2,10 @@ import React from 'react';
 import Image from "next/image";
 
 // @ts-ignore
-const ProjectItem = ({ imageUrl, title, desc, language, url}) => {
+const ProjectItem = ({ imageUrl, title, desc, language, url, date}) => {
+    date = new Date(date);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
     return (
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row md:space-x-12  p-6 rounded-lg transition-shadow duration-300 ease-in-out">
@@ -24,7 +27,11 @@ const ProjectItem = ({ imageUrl, title, desc, language, url}) => {
 
                     <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">{desc}</p>
                     <span
-                        className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{language}</span>
+                        className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{language}
+                    </span>
+                    <span
+                        className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{`Updated: ${formattedDate}`}
+                    </span>
                 </div>
             </div>
         </div>
