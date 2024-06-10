@@ -4,7 +4,14 @@ import Image from "next/image";
 // @ts-ignore
 const ProjectItem = ({ imageUrl, title, desc, language, url, date}) => {
     date = new Date(date);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    };
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
     return (
         <div className="container mx-auto p-4">
