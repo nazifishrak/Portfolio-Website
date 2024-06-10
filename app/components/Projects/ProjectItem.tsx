@@ -37,7 +37,7 @@ const ProjectItem = ({ imageUrl, title, desc, language, url, date}) => {
                         className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{language}
                     </span>
                     <span
-                        className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{`Updated: ${formattedDate}`}
+                        className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{`Last Commit: ${formattedDate}`}
                     </span>
                 </div>
             </div>

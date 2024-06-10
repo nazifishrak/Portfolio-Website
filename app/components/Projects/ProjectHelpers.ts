@@ -14,13 +14,13 @@ async function fetchRepo() {
         });
         let data = await response.json();
 
-        return data.map((repo: { id: any; name: any; description: any; html_url: any; language: any; updated_at: any; }) => ({
+        return data.map((repo: { id: any; name: any; description: any; html_url: any; language: any; pushed_at: any; }) => ({
             id: repo.id,
             name: repo.name,
             description: repo.description,
             url: repo.html_url,
             language: repo.language,
-            updated_at: repo.updated_at,
+            pushed_at: repo.pushed_at,
         }));
     } catch (error) {
         console.error('Error fetching repositories', error);

@@ -22,7 +22,7 @@ export default async function ProjectGallery() {
             <ul>
                 {result.map((repo: any) => (
                     <ProjectItem imageUrl={repo.imageUrl} title={repo.name} desc={repo.description}
-                                 language={repo.language}  url={repo.url} date={repo.updated_at} key={repo.id}/>
+                                 language={repo.language}  url={repo.url} date={repo.pushed_at} key={repo.id}/>
                 ))}
             </ul>
         </div>
