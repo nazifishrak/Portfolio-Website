@@ -44,7 +44,7 @@ const BlogPost = ({ params }: BlogPostProps) => {
         {/*  {blog.blogTitle}*/}
         {/*</span>*/}
         {/*</h1>*/}
-        <h1 className="mb-4 text-center  text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{blog.blogTitle.slice(0,20)}<span
+        <h1 className="text-left mb-4 lg:text-center  text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{blog.blogTitle.slice(0,20)}<span
               className="underline underline-offset-2 decoration-4 lg:decoration-8 decoration-indigo-400 dark:decoration-blue-600">{blog.blogTitle.slice(21,)}</span>
         </h1>
 
