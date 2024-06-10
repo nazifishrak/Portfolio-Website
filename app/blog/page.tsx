@@ -7,7 +7,7 @@ import BlogType from "@/app/lib/constants";
 export default function Blog() {
     const [blogs, setBlogs] = useState<BlogType[]>([]);
     const [loading, setLoading] = useState(true); // Add loading state
-
+    const [categoryFilter, setCategoryFilter] = useState('all');
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
@@ -33,17 +33,37 @@ export default function Blog() {
                 From <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">My Notebook</span>
             </h1>
 
+            <div className="flex pr-10 justify-end">
+                <select
+                    className="w-1/12  bg-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="category"
+                    id="category"
+                    value={categoryFilter}
+                onChange={(e)=>{setCategoryFilter(e.target.value)}}>
+
+                    {/*Next steps to make this dynamic. For now keeping it static*/}
+                    <option value="all">All</option>
+                    <option value="tech">Tech</option>
+                    <option value="coding">Coding</option>
+                    <option value="personal">Personal</option>x
+                </select>
+            </div>
+
             <ul className="space-y-8">
-                {blogs.map((blog) => (
-                    <BlogItem
-                        key={blog.slug}
-                        title={blog.blogTitle}
-                        content={blog.blogContent}
-                        imageUrl={blog.pictureUrl}
-                        slug={blog.slug}
-                        category={blog.blogCategory}
-                    />
-                ))}
+                {blogs.map((blog) => {
+                    if (categoryFilter === 'all' || blog.blogCategory === categoryFilter) {
+                        return (
+                            <BlogItem
+                                key={blog.slug}
+                                title={blog.blogTitle}
+                                content={blog.blogContent}
+                                imageUrl={blog.pictureUrl}
+                                slug={blog.slug}
+                                category={blog.blogCategory}
+                            />
+                        );
+                    }
+                })}
             </ul>
         </div>
     );
