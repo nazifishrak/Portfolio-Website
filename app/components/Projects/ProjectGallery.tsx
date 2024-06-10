@@ -4,10 +4,18 @@ import filterRepo from "@/app/components/Projects/ProjectHelpers";
 
 
 export default async function ProjectGallery() {
-
-
+    interface Repository {
+        id: number;
+        name: string;
+        description: string;
+        language: string;
+        url: string;
+        pushed_at: string;
+        imageUrl: string;
+    }
 // @ts-ignore
-    let result= await filterRepo()
+    let result: Repository[] = await filterRepo();
+    result.sort((a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime());
 
 
 
