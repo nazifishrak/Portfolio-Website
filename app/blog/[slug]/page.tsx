@@ -39,11 +39,15 @@ const BlogPost = ({ params }: BlogPostProps) => {
 
   return (
       <div className="container mx-auto p-4 md:p-8 rounded-lg">
-        <h1 className="mb-4 text-6xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-pink-400 dark:from-sky-300 dark:to-slate-400">
-          {blog.blogTitle}
-        </span>
+        {/*<h1 className="mb-4 text-6xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">*/}
+        {/*<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-pink-400 dark:from-sky-300 dark:to-slate-400">*/}
+        {/*  {blog.blogTitle}*/}
+        {/*</span>*/}
+        {/*</h1>*/}
+        <h1 className="mb-4 text-center  text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{blog.blogTitle.slice(0,20)}<span
+              className="underline underline-offset-2 decoration-4 lg:decoration-8 decoration-indigo-400 dark:decoration-blue-600">{blog.blogTitle.slice(21,)}</span>
         </h1>
+
 
         <Markdown
             className="prose prose-lg dark:prose-dark max-w-3xl text-gray-700 dark:text-gray-300 mx-auto"
@@ -104,7 +108,7 @@ const BlogPost = ({ params }: BlogPostProps) => {
                   },
                 },
                 code: {
-                  component: ({ className, children }) => {
+                  component: ({className, children}) => {
                     const language = className ? className.replace('lang-', '') : '';
                     console.log(language)
                     return (
