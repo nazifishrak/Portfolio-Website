@@ -5,13 +5,16 @@ async function fetchRepo() {
     const token = process.env.GITHUB_TOKEN;
 
     try {
-        const response = await axios.get(`https://api.github.com/users/${username}/repos`, {
+        let response = await fetch(`https://api.github.com/users/${username}/repos`, {
+            cache: 'no-store',
+            method: 'GET',
             headers: {
                 Authorization: `token ${token}`,
             },
         });
+        let data = await response.json();
 
-        return response.data.map((repo: { id: any; name: any; description: any; html_url: any; language: any; }) => ({
+        return data.map((repo: { id: any; name: any; description: any; html_url: any; language: any; }) => ({
             id: repo.id,
             name: repo.name,
             description: repo.description,
