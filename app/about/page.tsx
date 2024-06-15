@@ -11,49 +11,39 @@ const About = () => {
 
             <p className="max-w-sm md:max-w-2xl lg:max-w-2xl font-light text-xl text-justify mb-8 text-gray-700 dark:text-gray-300">
                 {/* eslint-disable-next-line react/no-unescaped-entities */}
-                Hey there! I'm Nazif Ishrak, a computer science student at the University of British Columbia (UBC) in
-                Vancouver, Canada. Originally from Dhaka, Bangladesh, my journey to UBC has been filled with incredible
-                opportunities and learnings.
+                Hello! I'm Nazif Ishrak, a passionate computer science student at the University of British Columbia (UBC) in the vibrant city of Vancouver, Canada. My journey began in Dhaka, Bangladesh, where my love for technology and problem-solving took root.
 
 
             </p>
 
-            <Image src={"https://i.imgur.com/KQE9uLZ.jpg"}
-                   alt={"Nazif Ishrak"} width={300} height={100} className="rounded-lg"/>
+            <Image
+                // src={"https://i.imgur.com/KQE9uLZ.jpg"}
+                src={"https://i.imgur.com/kkjMppQ.jpeg"}
+                   alt={"Nazif Ishrak"} width={300} height={80} className="rounded-lg"/>
 
             <p className="max-w-sm md:max-w-2xl lg:max-w-2xl font-light text-xl text-justify mb-8 text-gray-700 dark:text-gray-300">
                 {/* eslint-disable-next-line react/no-unescaped-entities */}
-                I've had the chance to work with amazing teams at Broadridge, D-Wave Quantum Systems, and Pathao
-                Limited, where I honed my skills in product management, data engineering, and systems analysis. I also
-                enjoy teaching and mentoring, having served as a Teaching Assistant at UBC and a Coding Instructor at
-                Don Valley West.
+                I've had the opportunity to dive into various realms of technology, working with innovative teams at Broadridge, D-Wave Quantum Systems, and Pathao Limited. These experiences have sharpened my skills in product management, data engineering, and systems analysis, making me a versatile tech enthusiast.
             </p>
 
-            <Image src={"https://i.imgur.com/hrscq9E.jpeg"}
+            <Image
+                src={"https://i.imgur.com/hrscq9E.jpeg"}
                    alt={"ILOT Scholars"} width={500} height={300} className="rounded-lg"/>
             <p className={"italic font-thin"}>International Scholars UBC</p>
 
             <p className="max-w-sm md:max-w-2xl lg:max-w-2xl font-light text-xl text-justify mb-8 text-gray-700 dark:text-gray-300">
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                Outside of my professional life, I'm an avid learner and explorer. I love diving into new technologies
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                and methodologies, constantly pushing myself to grow. When I'm not coding or studying, you can find me
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                with friends, eating, or exploring British Columbia's beautiful outdoors.
+                One of my greatest joys is sharing knowledge. As a Teaching Assistant at UBC and a Coding Instructor at Algorithmics, I've had the privilege of mentoring aspiring techies and witnessing their growth firsthand.
             </p>
 
             <p className="max-w-sm md:max-w-2xl lg:max-w-2xl font-light text-xl text-justify mb-8 text-gray-700 dark:text-gray-300">
-                This website is my personal playground where I don my creative developer hat. While it might look like a
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                simple portfolio with nice aesthetics on the surface, it's much more than that. Behind the scenes, I
-                strive to implement community-standard approaches, constantly learning and applying new techniques to
-                enhance my skills.
-
+                I live by the motto "Learn, Create, Inspire." I'm always on the lookout for new technologies and methodologies, pushing my boundaries and striving to inspire others through my journey. When I'm not immersed in the digital world, you'll find me exploring nature, savoring new cuisines, or enjoying time with friends.
 
             </p>
 
             <p className="max-w-sm md:max-w-2xl lg:max-w-2xl font-light text-xl text-justify mb-8 text-gray-700 dark:text-gray-300">
-                Thank you for visiting, and I hope you enjoy exploring my work as much as I enjoy creating it.
+                This website is more than just a portfolio—it's my creative playground. Here, I experiment with cutting-edge technologies and showcase projects that reflect my dedication to excellence and innovation. It's a testament to my belief in continuous learning and the joy of creation.
+
+                Thank you for stopping by. I hope you enjoy exploring my work as much as I enjoy bringing it to life.
             </p>
         </div>
     );
