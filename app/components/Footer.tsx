@@ -15,9 +15,9 @@ const Footer = () => {
                             {/*    <span*/}
                             {/*        className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"> 💻 Previous Website</span>*/}
                             {/*</a>*/}
-                            <div className="bg-black flex justify-center items-center">
+                            <div className="rounded-xl flex justify-center items-center">
 
-                                <div className="relative inline-flex  group">
+                                <div className="rounded-xl relative inline-flex group">
                                     <div
                                         className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                                     </div>
