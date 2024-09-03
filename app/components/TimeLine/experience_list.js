@@ -1,4 +1,17 @@
-const exp_list = [{
+const exp_list = [
+    {
+        company: "University of British Columbia",
+        date: "September 2024 – Present",
+        title: "Teaching Assistant",
+        url:"https://www.ubc.ca/"
+    },
+    {
+        company: "UBC Housing",
+        date: "August 2023 – Present",
+        title: "Residence Advisor",
+        url:"https://vancouver.housing.ubc.ca/"
+    },
+    {
     company: "Broadridge",
     date: "September 2023 – April 2024",
     title: "Product Management Intern",
@@ -6,15 +19,9 @@ const exp_list = [{
 },
 {
     company: "Algorithmics",
-    date: "May 2023 – Present",
+    date: "May 2023 – May 2024",
     title: "Coding Instructor",
     url:"https://algorithmicschool.com/"
-},
-{
-    company: "UBC Housing",
-    date: "August 2023 – Present",
-    title: "Residence Advisor",
-    url:"https://vancouver.housing.ubc.ca/"
 },
 {
     company: "D-Wave Quantum Systems Inc.",

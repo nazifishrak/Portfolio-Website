@@ -32,9 +32,9 @@ const Hero = () => {
                         <p className="text-left mb-4 text-xl font-thin leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-white">I
                             am a CS Major at UBC.
                             <br/>
-                            Currently a <span
-                                className="underline underline-offset-2 decoration-2 decoration-blue-400 dark:decoration-blue-600 md:decoration-4 md:underline-offset-4 lg:decoration-4 lg:underline-offset-4 ">Product Manager</span> intern
-                            at Broadridge
+                            Passionate about <span
+                                className="underline underline-offset-2 decoration-2 decoration-blue-400 dark:decoration-blue-600 md:decoration-4 md:underline-offset-4 lg:decoration-4 lg:underline-offset-4 "></span>
+                                Machine Learning, building fast programs, and guiding product development 
                             <br/>
                             I like to code for fun
                         </p>
