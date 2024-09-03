@@ -15,6 +15,7 @@ export default async function ProjectGallery() {
     }
 // @ts-ignore
     let result: Repository[] = await filterRepo();
+    // console.log(result)
     result.sort((a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime());
 
 

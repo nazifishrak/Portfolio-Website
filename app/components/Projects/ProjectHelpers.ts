@@ -53,6 +53,7 @@ const excluded_repo_names = [
 
 async function filterRepo() {
     const repositories = await fetchRepo();
+    console.log(repositories);
     const filtered_repo_list = [];
 
     for (const repo of repositories) {
