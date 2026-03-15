@@ -1,15 +1,18 @@
-# haydenbleasel.com
+# nazifishrak.com
 
-My personal website.
+My personal portfolio website.
+
+## Development
 
 Run the development server locally with:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
-I also have a CLI.
+## Tech Stack
 
-```bash
-npx haydenbleasel
-```
+- Next.js 16
+- Tailwind CSS 4
+- Bun
+- Turbo (monorepo)

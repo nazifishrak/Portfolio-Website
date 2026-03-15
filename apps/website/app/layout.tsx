@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
-import Background from "./background.jpg";
+import { ThemeToggle } from "../components/theme-toggle";
+import { Navigation } from "../components/navigation";
+import { DitherBackground } from "../components/dither-background";
 
-const soehneBuch = localFont({
-  src: "./soehne-buch.woff2",
+const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: "400",
-  style: "normal",
 });
 
-const title = "Software engineer and product designer | Hayden Bleasel";
+const title = "Final Year CS @ UBC → Mastercard | Nazif Ishrak";
 const description =
-  "I design and build software on the internet. I’m originally from Sydney, Australia and currently living in San Francisco, California 🇺🇸.";
+  "Final year CS at UBC. Joining Mastercard full-time in Vancouver. I take things apart—code, systems, products—and put them back together faster and cleaner. Backend work, small tools, and market systems on the side.";
 
 export const metadata: Metadata = {
   title,
   description,
 
-  creator: "Hayden Bleasel",
+  creator: "Nazif Ishrak",
 
   authors: [
     {
-      name: "Hayden Bleasel",
-      url: "https://haydenbleasel.com",
+      name: "Nazif Ishrak",
+      url: "https://github.com/nazifishrak",
     },
   ],
 
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     title,
     description,
     type: "website",
-    url: "https://haydenbleasel.com",
-    siteName: "Hayden Bleasel",
+    url: "https://nazifishrak.com",
+    siteName: "Nazif Ishrak",
     locale: "en_US",
     images: [
       {
-        alt: "Hayden Bleasel",
+        alt: "Nazif Ishrak",
         height: 630,
-        url: "https://haydenbleasel.com/opengraph-image.png",
+        url: "https://nazifishrak.com/opengraph-image.png",
         width: 1200,
       },
     ],
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    creatorId: "@haydenbleasel",
+    creatorId: "@nazifishrak",
     images: [
       {
-        alt: "Hayden Bleasel",
+        alt: "Nazif Ishrak",
         height: 630,
         width: 1200,
-        url: "https://haydenbleasel.com/opengraph-image.png",
+        url: "https://nazifishrak.com/opengraph-image.png",
       },
     ],
   },
@@ -77,29 +77,22 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
-    <body className={`${soehneBuch.className} antialiased`}>
-      <div className="absolute top-0 right-0 left-0 h-[50vh] max-h-[600px] w-full">
+    <body className={`${inter.className} antialiased`}>
+      <DitherBackground />
+      <main className="relative z-10 mx-auto w-full max-w-xl px-4 py-16 sm:py-32 pb-32">
         <Image
-          alt="Logo"
-          className="size-full object-cover dark:opacity-10"
-          height={600}
-          src={Background}
-          width={1440}
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-transparent to-background" />
-      </div>
-      <main className="relative z-10 mx-auto w-full max-w-xl px-4 py-16 sm:py-32">
-        <Image
-          alt="Hayden Bleasel"
+          alt="Nazif Ishrak"
           className="mb-12 size-8 rounded-full"
           height={32}
-          src="https://github.com/haydenbleasel.png"
+          src="https://github.com/nazifishrak.png"
           width={32}
         />
         {children}
       </main>
       <Analytics />
       <Toaster />
+      <ThemeToggle />
+      <Navigation />
     </body>
   </html>
 );

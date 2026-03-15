@@ -1,11 +1,12 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: var(--color-stone-50);
   --foreground: var(--color-stone-950);
   --muted: var(--color-stone-500);
   --border: var(--color-stone-200);
-  --primary: #c94736;
+  --primary: #3b82f6;
 }
 
 @theme {
@@ -16,14 +17,12 @@
   --color-primary: var(--primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-stone-950);
-    --foreground: var(--color-stone-50);
-    --muted: var(--color-stone-400);
-    --border: var(--color-stone-800);
-    --primary: #c94736;
-  }
+.dark {
+  --background: var(--color-stone-950);
+  --foreground: var(--color-stone-50);
+  --muted: var(--color-stone-400);
+  --border: var(--color-stone-800);
+  --primary: #3b82f6;
 }
 
 @layer base {
