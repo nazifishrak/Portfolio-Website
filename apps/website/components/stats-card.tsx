@@ -41,21 +41,35 @@ export const StatsCard = () => {
     <Card>
       <CardHeader>Coding Journey ⏱️</CardHeader>
       <CardContent>
-        <div className="space-y-3">
+        <div className="space-y-6">
           <div className="group/stat">
-            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent group-hover/stat:scale-105 transition-transform font-mono">
+            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground/90 tabular-nums">
               {stats.years.toFixed(10)}
             </div>
-            <div className="text-sm text-muted">years and counting...</div>
-          </div>
-          <div className="flex gap-6">
-            <div>
-              <div className="text-xl font-semibold font-mono">{stats.months}</div>
-              <div className="text-xs text-muted">months</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1.5 font-sans">
+              Years and counting
             </div>
+          </div>
+          
+          <div className="flex items-center gap-6 border-t border-border/40 pt-5">
             <div>
-              <div className="text-xl font-semibold font-mono">{stats.weeks}</div>
-              <div className="text-xs text-muted">weeks</div>
+              <div className="text-2xl font-semibold tracking-tight text-foreground/90">
+                {stats.months}
+              </div>
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-sans mt-0.5">
+                Months
+              </div>
+            </div>
+            
+            <div className="h-8 w-px bg-border/40 self-center" />
+            
+            <div>
+              <div className="text-2xl font-semibold tracking-tight text-foreground/90">
+                {stats.weeks}
+              </div>
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-sans mt-0.5">
+                Weeks
+              </div>
             </div>
           </div>
         </div>

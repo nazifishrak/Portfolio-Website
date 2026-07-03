@@ -32,7 +32,23 @@ I'm currently working on various projects involving machine learning, web develo
 
 Software I use and tools I love:
 
-- [Cursor](https://www.cursor.com/) *— The AI code editor.*
-- [GitHub Desktop](https://github.com/apps/desktop) *— Simple repository management.*
-- [Warp](https://app.warp.dev/) *— A modern, Rust-based terminal.*
-- [Visual Studio Code](https://code.visualstudio.com/) *— Versatile code editor.*
+<div className="flex flex-col gap-1 mt-6">
+  {[
+    { name: "MacBook Air M2", desc: "My daily driver machine.", href: "https://www.apple.com/macbook-air/" },
+    { name: "Zed", desc: "Fast, collaborative code editor built in Rust.", href: "https://zed.dev/" },
+    { name: "Alacritty", desc: "GPU-accelerated terminal emulator.", href: "https://alacritty.org/" },
+    { name: "Antigravity CLI", desc: "Context-aware autonomous AI coding agent.", href: "https://antigravity.dev/" },
+    { name: "Obsidian", desc: "For note-taking and personal wiki management.", href: "https://obsidian.md/" },
+    { name: "Dia Browser", desc: "Privacy-focused browser by The Browser Company.", href: "https://diabrowser.com/" },
+    { name: "Raycast", desc: "Command center for productive macOS usage.", href: "https://www.raycast.com/" }
+  ].map((tool, index) => (
+    <div key={index} className="flex flex-col sm:flex-row sm:items-baseline justify-between py-3 border-b border-stone-200/40 dark:border-stone-800 group hover:border-stone-300 dark:hover:border-stone-700 transition-colors duration-500">
+      <a href={tool.href} target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground hover:text-primary transition-colors text-sm sm:text-base">
+        {tool.name}
+      </a>
+      <span className="text-xs sm:text-sm text-muted-foreground sm:text-right">
+        {tool.desc}
+      </span>
+    </div>
+  ))}
+</div>

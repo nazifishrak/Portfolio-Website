@@ -7,7 +7,7 @@ type CardProps = {
 
 export const Card = ({ children, className = "" }: CardProps) => (
   <div
-    className={`group rounded-2xl border border-border bg-background/50 backdrop-blur-sm p-6 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out hover:border-primary/20 ${className}`}
+    className={`group rounded-2xl border border-dashed border-stone-300 dark:border-stone-800 bg-transparent p-6 hover:border-stone-400 dark:hover:border-stone-700 transition-colors duration-500 ease-out ${className}`}
   >
     {children}
   </div>
@@ -18,7 +18,9 @@ type CardHeaderProps = {
 };
 
 export const CardHeader = ({ children }: CardHeaderProps) => (
-  <h3 className="text-base font-semibold mb-4 group-hover:text-primary transition-colors duration-300">{children}</h3>
+  <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors duration-500 mb-4">
+    {children}
+  </h3>
 );
 
 type CardContentProps = {
