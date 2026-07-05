@@ -1,0 +1,74 @@
+---
+title: 'Building Wandrers on a Shoestring: What a Small Team Learns Scaling a Big Idea'
+date: '2026-07-05'
+summary: 'What a small team learned scaling Wandrers, a Bangladeshi travel platform, on a near-zero budget by leveraging Supabase, AWS Lambda, EventBridge, and Serverless infrastructure.'
+---
+
+## The Problem: Too Many Moving Parts, Not Enough People
+
+Wandrers started as a simple pitch: give Bangladeshi travelers a real platform to book tours, and give local providers a real platform to sell them. Simple to say. Not simple to build.
+
+Once we actually sat down and wrote out the requirements, the scope of "simple" ballooned fast. We needed a booking system that could handle refunds and provider-side management. We needed a feed where providers post trips and experiences. We needed a way for travelers to post their own trips and find companions to join them — essentially a social layer bolted onto a marketplace. On top of that: a chat service for those travelers to coordinate, a recommendation engine to make sure the right posts landed on the right feeds, geolocation for anything map-related, authentication and user registration, transactional email, and both a web app and a mobile app to ship all of it through.
+
+That's not a weekend project. That's not even a "hire a big team and throw bodies at it" project, because we didn't have a big team. We had a handful of people and a limited budget, and the challenge wasn't just building each piece — it was deciding, upfront, which architectural choices would let a small team keep shipping without drowning in complexity or racking up a hosting bill we couldn't justify.
+
+## Choosing Boring, Cheap Tools on Purpose
+
+Every early decision on Wandrers ran through the same filter: will this keep our costs near zero while we're still proving the idea out?
+
+That filter is why we landed on Supabase for our database. The free tier was generous enough for our testing and early launch, and the fact that it ships with auth baked in meant we didn't have to stand up a separate identity provider just to let people sign in. One less system to build, one less system to pay for.
+
+The same logic applied everywhere else. For transactional email, we went with Resend instead of standing up our own SMTP infrastructure. For geolocation and mapping, we used the Mapbox API rather than building anything in-house. None of these were exciting choices. They were the right choices for a team our size.
+
+For the backend itself, we wrote everything in NestJS. It's opinionated in the way Spring Boot is opinionated — it forces structure onto you whether you want it or not — and since we were already committed to TypeScript across the stack, it was the natural fit.
+
+## The Lambda Bet
+
+Here's where things got interesting. A traditional NestJS app assumes a long-running server. Long-running servers cost money around the clock, whether anyone's using your product at 3am or not. For an early-stage product with no meaningful traffic yet, that's money burning for nothing.
+
+So instead of running a server, we used an adapter to package our entire NestJS application into a single Lambda function, sitting behind API Gateway. Every request that hits our backend invokes that one function. AWS's Lambda free tier is generous, and for a product still finding its footing, that meant our compute costs sat close to zero.
+
+It sounded straightforward on paper. It wasn't.
+
+The first wall we hit was Prisma. Prisma ships with its own query engine binary, and that binary is large. Large enough that bundling it into a Lambda package pushed us uncomfortably close to Lambda's deployment size limits. Getting a full NestJS + Prisma app to fit and run inside a Lambda function meant paying close attention to what actually got bundled, not just letting the default build process do its thing.
+
+The second wall was decorators. NestJS leans heavily on TypeScript decorators for dependency injection — that's the whole appeal of the framework. But once we started minifying our build with esbuild to keep the Lambda package lean, a lot of that decorator metadata got stripped or mangled in the process. Dependency injection that worked perfectly in local dev would silently break in the deployed function. The fix wasn't elegant: we had to go back and add explicit injection tokens in our constructors instead of relying on the framework to infer everything automatically.
+
+```typescript
+// Instead of relying purely on decorator-inferred metadata,
+// which esbuild's minification can strip:
+constructor(
+  @Inject(BOOKING_SERVICE) private readonly bookingService: BookingService,
+  @Inject(NOTIFICATION_SERVICE) private readonly notificationService: NotificationService,
+) {}
+```
+
+It's a small change on the page. It cost us a lot more time to track down than it looks like it should have.
+
+We also needed a way to handle work that shouldn't block a request-response cycle, and a single request/response Lambda isn't built for that on its own. Our solution was to lean on EventBridge as the backbone for anything asynchronous. The pattern was consistent across the app: the main Lambda handles the incoming request, does the minimum work needed to respond quickly, and emits an event onto EventBridge. A separate consumer Lambda, subscribed to that event, picks up the actual work in the background.
+
+That pattern ended up running a surprising amount of the product. Booking confirmation emails went through it, so a slow email provider never held up a booking response. Refund and payment processing went through it, since that work involves multiple steps and external calls that shouldn't block the user-facing request. Trip status updates — a trip moving from upcoming to ongoing to completed — got triggered the same way, decoupled from whatever action caused the transition. Account deletion ran through it too: a user requesting deletion just needed a fast acknowledgment, while the actual cleanup across tables happened asynchronously in the consumer. We also used it for batch jobs, things like periodic feed re-ranking, that didn't need to run synchronously with any single user action at all.
+
+Splitting things this way meant the request-handling Lambda stayed thin and fast, and anything slower, multi-step, or failure-prone lived in its own consumer function where we could retry or handle errors without affecting the user waiting on a response. We used the Serverless Framework to define all of this as infrastructure-as-code — the functions, the event rules, the gateway — so the whole setup could be deployed and reproduced without anyone needing to click around the AWS console from memory.
+
+None of this was the "fun" part of building a startup. But it's the part that let us keep our infrastructure bill near zero while we were still validating whether people even wanted the product.
+
+## Keeping a Small Team From Stepping on Itself
+
+Architecture was only half the problem. The other half was people — specifically, how a small team avoids breaking things while multiple people push code into the same system.
+
+We set up a CI/CD pipeline early, specifically to keep our development and production environments isolated from each other. That sounds obvious in hindsight, but in the early days it's tempting to skip it — it's one more thing to configure when you'd rather be shipping features. We paid for that temptation once, when test data nearly bled into a production path, and after that we didn't skip it again. Isolating the environments meant a bad migration or a bug in a feature branch couldn't corrupt real user data.
+
+Code review was the harder problem to solve, because it's not a tool you configure once — it's a habit you have to enforce every day. With a small team, there's a real temptation to let things slide because everyone's busy and the backlog is long. I had to be deliberate about it: setting a bar for what could merge, catching architectural drift before it became a pattern, and pushing back on shortcuts that would've been fine for a demo but not for something real users depend on.
+
+## What This Actually Taught Me
+
+A few things stuck with me from this whole process:
+
+**1. Cost constraints are a design tool, not a limitation.** Every decision we made — Supabase over a self-managed database, Lambda over a persistent server, Resend over self-hosted email — was shaped by wanting to keep costs near zero. That constraint didn't weaken the architecture. If anything, it forced simpler, more maintainable choices than we might have made with an unlimited budget.
+
+**2. The tradeoffs of "cheap" infrastructure show up in the details, not the pitch.** Serverless sounds great in a one-line summary. The reality is bundle size limits, stripped metadata, and workarounds for anything that isn't a simple request-response. Choosing the cheap path doesn't mean choosing the easy path — it means trading one set of problems for another, and you need to actually understand what you're trading for.
+
+**3. Process debt compounds just as fast as technical debt.** Skipping environment isolation or letting code review slide doesn't feel costly in the moment, because the moment usually goes fine. It's the accumulation that gets you. Building the discipline early, while the team is still small, is a lot cheaper than trying to retrofit it once things have grown.
+
+Wandrers is still evolving, and there are plenty of pieces I'd probably approach differently with what I know now. But the process of untangling all of this — requirements, architecture, cost, and the people side of shipping — taught me more about building real software than any amount of reading about it ever could have.
